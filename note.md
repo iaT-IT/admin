@@ -9,6 +9,9 @@
 7. npm i next-cloudinary
 8. npm i @tanstack/react-table
 9. npm i date-fns
+10.   npm i stripe
+11.   npm i recharts
+12.   npm i next-themes
 
 ## NPX
 
@@ -26,10 +29,11 @@
 12.   npx shadcn-ui@latest add dropdown-menu
 13.   npx shadcn-ui@latest add select
 14.   npx shadcn-ui@latest add checkbox
-15.   npx prisma init
-16.   npx prisma generate
-17.   npx prisma db push
-18.   npx prisma migrate reset
+15.   npx shadcn-ui@latest add card
+16.   npx prisma init
+17.   npx prisma generate
+18.   npx prisma db push
+19.   npx prisma migrate reset
 
 ## Structure
 
