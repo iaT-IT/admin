@@ -11,7 +11,7 @@ export default async function DashboardLayout({
    children: React.ReactNode;
    params: { storeId: string };
 }) {
-   const { userId } = auth();
+   const userId = 'user_2SWjMgKpl1DFk3Srh9QIgpmRvfp';
    if (!userId) redirect('/sign-in');
 
    const store = await prismadb.store.findFirst({

@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request, res: Response) {
    try {
-      const { userId } = auth();
+      const userId = 'user_2SWjMgKpl1DFk3Srh9QIgpmRvfp';
       const body = await req.json();
       const { name } = body;
 

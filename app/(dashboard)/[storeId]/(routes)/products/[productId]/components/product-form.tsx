@@ -161,28 +161,30 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                <FormField
                   control={form.control}
                   name="images"
-                  render={({ field }) => (
-                     <FormItem>
-                        <FormLabel>Images</FormLabel>
-                        <FormControl>
-                           <ImageUpload
-                              value={field.value.map((image) => image.url)}
-                              onChange={(url) =>
-                                 field.onChange([...field.value, { url }])
-                              }
-                              onRemove={(url) =>
-                                 field.onChange([
-                                    ...field.value.filter(
-                                       (current) => current.url !== url,
-                                    ),
-                                 ])
-                              }
-                              disabled={loading}
-                           />
-                        </FormControl>
-                        <FormMessage />
-                     </FormItem>
-                  )}
+                  render={({ field }) => {
+                     return (
+                        <FormItem>
+                           <FormLabel>Images</FormLabel>
+                           <FormControl>
+                              <ImageUpload
+                                 value={field.value.map((image) => image.url)}
+                                 onChange={(url) =>
+                                    field.onChange([...field.value, { url }])
+                                 }
+                                 onRemove={(url) =>
+                                    field.onChange([
+                                       ...field.value.filter(
+                                          (current) => current.url !== url,
+                                       ),
+                                    ])
+                                 }
+                                 disabled={loading}
+                              />
+                           </FormControl>
+                           <FormMessage />
+                        </FormItem>
+                     );
+                  }}
                />
                <div className="grid grid-cols-3 gap-8">
                   <FormField
@@ -223,72 +225,66 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                   <FormField
                      control={form.control}
                      name="categoryId"
-                     render={({ field }) => (
-                        <FormItem>
-                           <FormLabel>Billboard</FormLabel>
-                           <Select
-                              disabled={loading}
-                              onValueChange={field.onChange}
-                              value={field.value}
-                              defaultValue={field.value}
-                           >
-                              <FormControl>
-                                 <SelectTrigger>
-                                    <SelectValue
-                                       defaultValue={field.value}
-                                       placeholder="Select a category"
-                                    />
-                                 </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                 {categories.map((category) => (
-                                    <SelectItem
-                                       key={category.id}
-                                       value={category.id}
-                                    >
-                                       {category.name}
-                                    </SelectItem>
-                                 ))}
-                              </SelectContent>
-                           </Select>
-                           <FormMessage />
-                        </FormItem>
-                     )}
+                     render={({ field }) => {
+                        return (
+                           <FormItem>
+                              <FormLabel>Category</FormLabel>
+                              <Select
+                                 disabled={loading}
+                                 onValueChange={field.onChange}
+                              >
+                                 <FormControl>
+                                    <SelectTrigger>
+                                       <SelectValue placeholder="Select a category" />
+                                    </SelectTrigger>
+                                 </FormControl>
+                                 <SelectContent>
+                                    {categories.map((category) => (
+                                       <SelectItem
+                                          key={category.id}
+                                          value={category.id}
+                                       >
+                                          {category.name}
+                                       </SelectItem>
+                                    ))}
+                                 </SelectContent>
+                              </Select>
+                              <FormMessage />
+                           </FormItem>
+                        );
+                     }}
                   />
                   <FormField
                      control={form.control}
                      name="sizeId"
-                     render={({ field }) => (
-                        <FormItem>
-                           <FormLabel>Size</FormLabel>
-                           <Select
-                              disabled={loading}
-                              onValueChange={field.onChange}
-                              value={field.value}
-                              defaultValue={field.value}
-                           >
-                              <FormControl>
-                                 <SelectTrigger>
-                                    <SelectValue
-                                       defaultValue={field.value}
-                                       placeholder="Select a size"
-                                    />
-                                 </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                 {sizes.map((size) => (
-                                    <SelectItem
-                                       key={size.id}
-                                       value={size.id}
-                                    >
-                                       {size.name}
-                                    </SelectItem>
-                                 ))}
-                              </SelectContent>
-                           </Select>
-                           <FormMessage />
-                        </FormItem>
-                     )}
+                     render={({ field }) => {
+                        return (
+                           <FormItem>
+                              <FormLabel>Size</FormLabel>
+                              <Select
+                                 disabled={loading}
+                                 onValueChange={field.onChange}
+                              >
+                                 <FormControl>
+                                    <SelectTrigger>
+                                       <SelectValue placeholder="Select a size" />
+                                    </SelectTrigger>
+                                 </FormControl>
+                                 <SelectContent>
+                                    {sizes.map((size) => (
+                                       <SelectItem
+                                          key={size.id}
+                                          value={size.id}
+                                       >
+                                          {size.name}
+                                       </SelectItem>
+                                    ))}
+                                 </SelectContent>
+                              </Select>
+                              <FormMessage />
+                           </FormItem>
+                        );
+                     }}
                   />
                   <FormField
                      control={form.control}
@@ -299,8 +295,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                            <Select
                               disabled={loading}
                               onValueChange={field.onChange}
-                              value={field.value}
-                              defaultValue={field.value}
                            >
                               <FormControl>
                                  <SelectTrigger>

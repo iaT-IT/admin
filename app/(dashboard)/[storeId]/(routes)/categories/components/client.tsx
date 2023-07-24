@@ -14,11 +14,12 @@ interface CategoryClientProps {
    data: CategoryColumn[];
 }
 export const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
+   console.log('🚀 ~ data:', data);
    const router = useRouter();
    const params = useParams();
    return (
       <>
-         <div className="fle items-center justify-between">
+         <div className="space-y-2">
             <Heading
                title={`Categories (${data.length})`}
                description="Manage categories for your store"

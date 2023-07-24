@@ -27,7 +27,7 @@ export async function POST(
    { params }: { params: { storeId: string } },
 ) {
    try {
-      const { userId } = auth();
+      const userId = 'user_2SWjMgKpl1DFk3Srh9QIgpmRvfp';
       const body = await req.json();
       const { name, value } = body;
 

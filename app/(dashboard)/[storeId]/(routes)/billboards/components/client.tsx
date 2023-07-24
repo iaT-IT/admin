@@ -18,7 +18,7 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
    const params = useParams();
    return (
       <>
-         <div className="fle items-center justify-between">
+         <div className="space-y-2">
             <Heading
                title={`Billboards (${data.length})`}
                description="Manage billboards for your store"

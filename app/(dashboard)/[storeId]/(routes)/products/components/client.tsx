@@ -18,7 +18,7 @@ export const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
    const params = useParams();
    return (
       <>
-         <div className="fle items-center justify-between">
+         <div className="space-y-2">
             <Heading
                title={`Products (${data.length})`}
                description="Manage products for your store"

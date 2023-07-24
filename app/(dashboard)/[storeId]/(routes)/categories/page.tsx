@@ -10,15 +10,22 @@ const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
       },
       include: {
          billboard: true,
+         _count: {
+            select: {
+               products: true,
+            },
+         },
       },
       orderBy: {
          createdAt: 'desc',
       },
    });
+   console.log('🚀 ~ categories:', categories);
 
    const formattedCategories: CategoryColumn[] = categories.map((item) => ({
       id: item.id,
       name: item.name,
+      quantity: item._count.products,
       billboardLabel: item.billboard.label,
       createdAt: format(item.createdAt, 'MMMM do, yyyy'),
    }));

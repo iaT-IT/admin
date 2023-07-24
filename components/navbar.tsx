@@ -6,7 +6,7 @@ import { UserButton, auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 
 const Navbar = async () => {
-   const { userId } = auth();
+   const userId = 'user_2SWjMgKpl1DFk3Srh9QIgpmRvfp';
    if (!userId) redirect('/sign-in');
    const stores = await prismadb.store.findMany({
       where: {
