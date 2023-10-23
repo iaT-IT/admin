@@ -2,10 +2,11 @@ import prismadb from '@/lib/prismadb';
 import { stripe } from '@/lib/stripe';
 import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { buffer } from 'stream/consumers';
 import Stripe from 'stripe';
 
 export async function POST(req: Request) {
-  const body = await req.text();
+  const body = await buffer(req.body as any);
   const signature = req.headers.get('stripe-signature') as string;
   if (!signature) {
     return new NextResponse(`No Stripe Signature found`, {
