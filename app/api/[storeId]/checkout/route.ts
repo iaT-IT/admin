@@ -61,6 +61,7 @@ export async function POST(
       },
     },
   });
+  console.log('❄️ ~ file: route.ts:64 ~ order:', order);
 
   const session = await stripe.checkout.sessions.create({
     line_items,
