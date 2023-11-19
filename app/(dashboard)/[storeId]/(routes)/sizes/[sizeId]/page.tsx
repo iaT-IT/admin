@@ -13,7 +13,7 @@ const CategoryPage = async ({
    });
 
    return (
-      <div className="flex-col">
+      <div className="flex-col overflow-y-auto h-screen pb-20 scrollbar-hidden">
          <div className="flex-1 space-y-4 p-8 pt-6">
             <SizeForm initialData={size} />
          </div>

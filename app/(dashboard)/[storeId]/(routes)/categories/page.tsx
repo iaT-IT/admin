@@ -4,37 +4,36 @@ import prismadb from '@/lib/prismadb';
 import { format } from 'date-fns';
 
 const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
-   const categories = await prismadb.category.findMany({
-      where: {
-         storeId: params.storeId,
+  const categories = await prismadb.category.findMany({
+    where: {
+      storeId: params.storeId,
+    },
+    include: {
+      billboard: true,
+      _count: {
+        select: {
+          products: true,
+        },
       },
-      include: {
-         billboard: true,
-         _count: {
-            select: {
-               products: true,
-            },
-         },
-      },
-      orderBy: {
-         createdAt: 'desc',
-      },
-   });
-   console.log('🚀 ~ categories:', categories);
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
 
-   const formattedCategories: CategoryColumn[] = categories.map((item) => ({
-      id: item.id,
-      name: item.name,
-      quantity: item._count.products,
-      billboardLabel: item.billboard.label,
-      createdAt: format(item.createdAt, 'MMMM do, yyyy'),
-   }));
-   return (
-      <div className="flex-col">
-         <div className="flex-1 space-y-4 p-8 pt-6">
-            <CategoryClient data={formattedCategories} />
-         </div>
+  const formattedCategories: CategoryColumn[] = categories.map((item) => ({
+    id: item.id,
+    name: item.name,
+    quantity: item._count.products,
+    billboardLabel: item.billboard.label,
+    createdAt: format(item.createdAt, 'MMMM do, yyyy'),
+  }));
+  return (
+    <div className="flex-col h-screen pb-20 scrollbar-hidden overflow-y-auto">
+      <div className="flex-1 space-y-4 p-8 pt-6">
+        <CategoryClient data={formattedCategories} />
       </div>
-   );
+    </div>
+  );
 };
 export default CategoriesPage;
