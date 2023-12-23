@@ -18,6 +18,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
    onRemove,
    value,
 }) => {
+   console.log(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME)
    const [isMounted, setIsMounted] = useState(false);
    useEffect(() => {
       setIsMounted(true);
@@ -55,7 +56,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
          </div>
          <CldUploadWidget
             onUpload={onUpload}
-            uploadPreset="slywpdw8"
+
+            uploadPreset={"ms4fmvck"}
          >
             {({ open }) => {
                const onClick = () => open();

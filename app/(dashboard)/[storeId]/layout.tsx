@@ -20,6 +20,7 @@ export default async function DashboardLayout({
       userId,
     },
   });
+  console.log(store);
   if (!store) redirect('/');
   return (
     <div className="h-screen overflow-hidden">

@@ -1,12 +1,13 @@
 import prismadb from '@/lib/prismadb';
 import { stripe } from '@/lib/stripe';
+import { CldOgImage } from 'next-cloudinary';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': process.env.FONTEND_STORE_URL!,
+  'Access-Control-Allow-Origin': "*",
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Allow-Headers': '*',
 };
 
 export async function OPTIONS(req: Request, res: Response) {
@@ -21,6 +22,7 @@ export async function POST(
     params: { storeId: string };
   },
 ) {
+
   const { productIds } = await req.json();
   if (!productIds || productIds.length === 0)
     return new NextResponse('Product ids are required.', { status: 400 });
@@ -61,7 +63,6 @@ export async function POST(
       },
     },
   });
-  console.log('❄️ ~ file: route.ts:64 ~ order:', order);
 
   const session = await stripe.checkout.sessions.create({
     line_items,
@@ -76,6 +77,7 @@ export async function POST(
       orderId: order.id,
     },
   });
+  console.log(session.url)
   return NextResponse.json(
     { url: session.url },
     {

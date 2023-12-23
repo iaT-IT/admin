@@ -6,6 +6,7 @@ import { buffer } from 'stream/consumers';
 import Stripe from 'stripe';
 
 export async function POST(req: Request) {
+try {
   const body = await buffer(req.body as any);
   const signature = req.headers.get('stripe-signature') as string;
   if (!signature) {
@@ -39,10 +40,11 @@ export async function POST(req: Request) {
     address?.postal_code,
     address?.country,
   ];
-
+  console.log(event.type)
   const addressString = addressComponents.filter((c) => c !== null).join(', ');
 
   if (event.type === 'checkout.session.completed') {
+    console.log("paid")
     const order = await prismadb.order.update({
       where: {
         id: session?.metadata?.orderId,
@@ -70,6 +72,10 @@ export async function POST(req: Request) {
       },
     });
   }
-
   return new NextResponse(null, { status: 200 });
+
+} catch (error) {
+    console.log(error)
+}
+
 }
